@@ -26,21 +26,26 @@ class Deals_Page:
         discount_options = Select(discount_filter_dropdown)
         discount_options.select_by_visible_text(self.discount_option)
         time.sleep(5)
+        self.driver.save_screenshot("Discount_Filter.png")
 
     def click_on_average_rating_4_and_up(self):
         average_rating_4_and_up_link = self.driver.find_element(By.CSS_SELECTOR,self.average_rating_above_4_css)
         self.driver.execute_script("arguments[0].scrollIntoView();",average_rating_4_and_up_link)
         average_rating_4_and_up_link.click()
         time.sleep(5)
+        self.driver.save_screenshot("Rating.png")
+
 
     def click_on_prime_deals_checkbox_and_verify_is_it_selected(self):
         self.driver.find_element(By.XPATH,self.prime_deals_checkbox_xpath).click()
         time.sleep(5)
+        self.driver.save_screenshot("Checkbox.png")
         # print('checkbox :',self.driver.find_element(By.XPATH,self.prime_deals_checkbox_xpath).is_selected())
 
     def click_on_deal_of_the_day_deal_type(self):
         self.driver.find_element(By.XPATH,self.deal_of_the_day_link_xpath).click()
         time.sleep(5)
+        self.driver.save_screenshot("Deal_of_the_day.png")
 
     def capturing_the_cards_only_for_deal_of_the_day(self):
         # either Accessories or AMAZON  not both CLOTHING should not be present in the name as well

@@ -18,7 +18,9 @@ class Deals_Page:
         self.accessories_text = 'Accessories'
         self.amazon_text = 'Amazon'
         self.clothing_text = 'Clothing'
-
+        self.selecting_mobile_and_accessories_xpath = "//span[@class='GridPresets-module__gridPresetsLargeItem_2xPgV2VoJCncjGPj18in1h GridPresets-module__selectedPreset_-JsFklJdPGF-wQYPAy4H2']"
+        self.percentage_xpath ="//*[contains(@class,'DealCard-module')]//div[@class='BadgeAutomated-module__badgeOneLineContainer_yYupgq1lKxb5h3bfDqA-B']//div"
+        self.selecting_card_xpath = "//a[contains(@class,'a-link-normal DealLink-module__dealLink_3v4tPYOP4qJj9bdiy0xAT a-color-base a-text-normal')]"
 
     def sort_discount_filter_by_high_to_low(self):
         discount_filter_dropdown = self.driver.find_element(By.NAME,self.sort_by_dropdown_name)
@@ -26,26 +28,21 @@ class Deals_Page:
         discount_options = Select(discount_filter_dropdown)
         discount_options.select_by_visible_text(self.discount_option)
         time.sleep(5)
-        self.driver.save_screenshot("Discount_Filter.png")
 
     def click_on_average_rating_4_and_up(self):
         average_rating_4_and_up_link = self.driver.find_element(By.CSS_SELECTOR,self.average_rating_above_4_css)
         self.driver.execute_script("arguments[0].scrollIntoView();",average_rating_4_and_up_link)
         average_rating_4_and_up_link.click()
         time.sleep(5)
-        self.driver.save_screenshot("Rating.png")
-
 
     def click_on_prime_deals_checkbox_and_verify_is_it_selected(self):
         self.driver.find_element(By.XPATH,self.prime_deals_checkbox_xpath).click()
         time.sleep(5)
-        self.driver.save_screenshot("Checkbox.png")
         # print('checkbox :',self.driver.find_element(By.XPATH,self.prime_deals_checkbox_xpath).is_selected())
 
     def click_on_deal_of_the_day_deal_type(self):
         self.driver.find_element(By.XPATH,self.deal_of_the_day_link_xpath).click()
         time.sleep(5)
-        self.driver.save_screenshot("Deal_of_the_day.png")
 
     def capturing_the_cards_only_for_deal_of_the_day(self):
         # either Accessories or AMAZON  not both CLOTHING should not be present in the name as well
@@ -61,3 +58,26 @@ class Deals_Page:
 
         for value in all_cards_filtered_values:
             print(value)
+
+    def click_on_mobile_and_accessories(self):
+
+        mobile_and_accessories_option = self.driver.find_element(By.XPATH,self.selecting_mobile_and_accessories_xpath)
+        self.driver.execute_script("arguments[0].scrollIntoView();", mobile_and_accessories_option)
+
+    def click_on_card_with_highest_discount_percentage(self):
+        discount_elements = self.driver.find_elements(By.XPATH,self.percentage_xpath)
+        discount_string = []
+        for element in discount_elements:
+            discount_percentage = element.text
+            if discount_percentage.startswith("Up"):
+                discount_string.append(discount_percentage)
+
+        discount_value = []
+
+        for each_element in discount_string:
+            discount_value.append(each_element.replace("%","").split(" ")[2])
+        print('dis v  :',len(discount_value))
+        print(max(discount_value))
+        discount_card_text = self.driver.find_elements(By.XPATH,self.selecting_card_xpath)
+        discount_card_text[discount_value.index(max(discount_value))].click()
+        time.sleep(5)

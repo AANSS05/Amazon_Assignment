@@ -11,6 +11,7 @@ def setUp(request):
     # service_obj = Service("C:\\Users\\Admin\\PycharmProjects\\pythonProject2\\Driver\\chromedriver.exe")
     request.cls.driver = webdriver.Chrome()
     request.cls.driver.get(config.get("Url","base_url"))
+    # request.cls.driver.get('https://www.amazon.in/')
     request.cls.driver.maximize_window()
     request.cls.driver.implicitly_wait(20)
     yield

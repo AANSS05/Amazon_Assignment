@@ -34,7 +34,7 @@ class Checkout_page:
         self.driver.find_element(By.XPATH,self.use_this_payment_method_button_xpath).click()
 
     def click_on_free_delivery_option(self):
-        self.wait.until(expected_conditions.presence_of_element_located(self.free_delivery_radio_button_xpath))
+        self.wait.until(expected_conditions.presence_of_element_located((self.free_delivery_radio_button_xpath)))
         try:
             if self.driver.find_element(By.XPATH,self.free_delivery_radio_button_xpath).is_displayed():
                 self.driver.find_element(By.XPATH,self.free_delivery_radio_button_xpath).click()
@@ -44,7 +44,7 @@ class Checkout_page:
             print('Element not found on the page.')
 
     def click_on_change_on_delivery_address(self):
-        self.wait.until(expected_conditions.presence_of_element_located(self.change_address_link_id))
+        self.wait.until(expected_conditions.presence_of_element_located((self.change_address_link_id)))
         self.driver.find_element(By.ID,self.change_address_link_id).click()
 
     def get_order_summary_and_order_total(self):

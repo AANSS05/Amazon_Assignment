@@ -57,13 +57,13 @@ class TestAllScenarios:
 
     def test_scenario_05(self):
         obj_HomePage = Home_Page(self.driver)
-        obj_CartPage = Cart_Page(self.driver)
+        obj_AddToCartPage = AddToCart_Page(self.driver)
         obj_CheckoutPage = Checkout_page(self.driver)
         obj_HomePage.click_on_your_account_and_add_HM_address()
         obj_HomePage.click_on_cart()
-        obj_CartPage.verify_quantity()
-        obj_CartPage.Verify_Items_added()
-        obj_CartPage.click_on_proceed_to_buy_button()
+        obj_AddToCartPage.verify_quantity()
+        obj_AddToCartPage.Verify_Items_added()
+        obj_AddToCartPage.click_on_proceed_to_buy_button()
         obj_CheckoutPage.click_on_use_this_address()
         obj_CheckoutPage.click_on_COD()
         obj_CheckoutPage.click_on_use_this_payment_method_button()

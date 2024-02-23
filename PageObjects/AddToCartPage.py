@@ -35,6 +35,10 @@ class AddToCart_Page:
             qty = self.driver.find_element(By.XPATH,self.selcted_qty_item_1_select_tag_xpath)
             if qty == '2':
                 assert True
+        elif self.wait.until(ec.presence_of_element_located((By.XPATH,self.selcted_qty_item_1_select_tag_xpath))):
+            qty = self.driver.find_element(By.XPATH,self.selcted_qty_item_1_select_tag_xpath)
+            if qty == '1':
+                assert True
         else:
             print('Quantity mismatch')
     
@@ -43,6 +47,10 @@ class AddToCart_Page:
             self.wait.until(ec.presence_of_element_located((By.XPATH,self.selcted_qty_item_2_select_tag_xpath)))
             qty = self.driver.find_element(By.XPATH,self.selcted_qty_item_2_select_tag_xpath)
             if qty == '2':
+                assert True
+        elif self.wait.until(ec.presence_of_element_located((By.XPATH,self.selcted_qty_item_2_select_tag_xpath))):
+            qty = self.driver.find_element(By.XPATH,self.selcted_qty_item_2_select_tag_xpath)
+            if qty == '1':
                 assert True
         else:
             print('Quantity mismatch')

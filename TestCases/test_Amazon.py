@@ -9,6 +9,7 @@ from PageObjects.CheckoutPage import Checkout_page
 from selenium.webdriver.common.by import By
 
 
+
 @pytest.mark.usefixtures("setUp")
 class TestAllScenarios:
     def test_Scenario_01(self):

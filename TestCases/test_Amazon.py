@@ -16,7 +16,6 @@ class TestAllScenarios:
         obj_LoginPage.click_on_continue_button()
         obj_LoginPage.enter_password_text()
         obj_LoginPage.click_on_signin_button()
-
         obj_HomePage = Home_Page(self.driver)
         obj_HomePage.Header_Footer()
         obj_HomePage.card_details()

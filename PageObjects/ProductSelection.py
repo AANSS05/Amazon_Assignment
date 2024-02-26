@@ -17,37 +17,18 @@ class ProductSelection_Page:
         self.prices_list = []
 
 
-    def sorting_products_based_on_avg_customer_review(self):
+    def sort_items_lowest_price(self):
         self.driver.find_element(By.XPATH, self.dropdown_button_xpath).click()
         time.sleep(5)
-        self.driver.find_element(By.LINK_TEXT, self.dropdown_option_to_select_xpath).click()
+        self.driver.find_element(By.LINK_TEXT, self.sort_option_xpath).click()
         time.sleep(5)
-
-    def clicking_on_product_with_highest_review_count(self):
-        review_count = self.driver.find_elements(By.XPATH,self.review_count_element_xpath)
-        time.sleep(3)
-        review_list = []
-        for review in review_count:
-            review_list.append(int((review.text).replace(",","")))
-
-        all_products = self.driver.find_elements(By.XPATH,self.all_products_xpath)
-
-
-
-
-    def sort_items_lowest_price(self):
-            self.driver.find_element(By.XPATH, self.dropdown_button_xpath).click()
-            time.sleep(5)
-            self.driver.find_element(By.LINK_TEXT, self.sort_option_xpath).click()
-            time.sleep(5)
-            prices = self.driver.find_elements(By.XPATH, self.find_items_prices_xpath)
-            time.sleep(4)
-            for x in prices:
-                self.prices_list.append(int(x.text))
-
-            self.sort_items_text = self.driver.find_elements(By.XPATH, self.sort_items_text_xpath)
-            self.sort_items_text[self.prices_list.index(min(self.prices_list))].click()
-            time.sleep(5)
+        prices = self.driver.find_elements(By.XPATH, self.find_items_prices_xpath)
+        time.sleep(4)
+        for x in prices:
+            self.prices_list.append(int(x.text))
+        self.sort_items_text = self.driver.find_elements(By.XPATH, self.sort_items_text_xpath)
+        self.sort_items_text[self.prices_list.index(min(self.prices_list))].click()
+        time.sleep(5)
 
 
 

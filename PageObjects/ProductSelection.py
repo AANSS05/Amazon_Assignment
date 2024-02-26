@@ -12,6 +12,7 @@ class ProductSelection_Page:
         self.review_count_element_xpath = "//li[contains(@class,'no-margin-right')]//div[contains(@class,'a-row')]//span[contains(@class,'a-size-small a-color-tertiary')]"
         self.dropdown_option_to_select_xpath = 'Avg. Customer Review'
 
+
     def sorting_products_based_on_avg_customer_review(self):
         self.driver.find_element(By.XPATH, self.dropdown_button_xpath).click()
         time.sleep(5)
@@ -27,4 +28,3 @@ class ProductSelection_Page:
 
         all_products = self.driver.find_elements(By.XPATH,self.all_products_xpath)
 
-        all_products[review_list.index(max(review_list))].click()

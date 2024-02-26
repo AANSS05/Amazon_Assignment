@@ -20,7 +20,6 @@ class Product_Page:
         self.dropdown_button_for_quantity = "//select[contains(@id,'quantity')]"
 
 
-
     def print_product_details(self):
         product_title = self.driver.find_element(By.XPATH, self.product_title_xpath).text
         star_rating_of_the_product = self.driver.find_element(By.XPATH, self.star_rating_of_the_product_xpath).text
@@ -44,4 +43,4 @@ class Product_Page:
 
         add_to_card_button = self.driver.find_element(By.XPATH, self.add_product_to_cart_xpath)
         add_to_card_button.click()
-        time.sleep(5)
+
